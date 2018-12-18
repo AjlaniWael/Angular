@@ -1,0 +1,21 @@
+<!-- Add panel-success class only if hasJustViewed property is true -->
+<div class="panel panel-primary" [class.panel-success]="hasJustViewed">
+  <!-- pointerCursor class changes the cursor style to pointer when hovered
+           over the employee panel title. When clicked on the title, isHidden
+           boolean property is toggled from true to false & vice-versa. We use
+           this property to toggle the visibility of panel body & footer -->
+  <div class="panel-heading pointerCursor" (click)="isHidden = !isHidden">
+      <h3 class="panel-title">{{title | uppercase}}</h3>
+  </div>
+  <div class="panel-body" [hidden]="isHidden">
+      <!-- ng-content specifies the slot into which the content will be projected
+             by the component that consumes this accordion component -->
+      <ng-content select=".myPanelBody"></ng-content>
+  </div>
+  <div class="panel-footer" [hidden]="isHidden">
+      <!-- Another slot into which the content can be projected. Since we have more
+             than one slot into which the content can be projected, this is called
+             multi-slot content projection-->
+      <ng-content select=".myPanelFooter"></ng-content>
+  </div>
+</div>
